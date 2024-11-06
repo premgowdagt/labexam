@@ -15,10 +15,7 @@ spec:
         app: static-website
     spec:
       containers:
-      - name: static-website-container
-        image: premgowda07/static-website:v1  # Your Docker image
+      - name: static-website
+        image: premgowda07/static-website:v1  # Make sure the image is updated and pushed correctly
         ports:
-        - containerPort: 80  # Exposing port 80 inside the container
-        env:
-        - name: ENV_VARIABLE  # Optional: Add any environment variables here
-          value: "your-value"
+        - containerPort: 80
