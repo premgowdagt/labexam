@@ -1,21 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: static-website-deployment
+  name: apache-static-website
   labels:
-    app: static-website
+    app: apache-static-website
 spec:
-  replicas: 1
+  replicas: 1  # You can scale this to more replicas if needed
   selector:
     matchLabels:
-      app: static-website
+      app: apache-static-website
   template:
     metadata:
       labels:
-        app: static-website
+        app: apache-static-website
     spec:
       containers:
-      - name: static-website
-        image: premgowda07/static-website:v1  # Make sure the image is updated and pushed correctly
+      - name: apache
+        image: your-dockerhub-username/static-website-apache:latest  # Replace with your image
         ports:
-        - containerPort: 80
+        - containerPort: 80  # Apache will serve the website on port 80
+        volumeMounts:
+        - name: static-content
+          mountPath: /usr/local/apache2/htdocs/  # Apache's web root
+      volumes:
+      - name: static-content
+        emptyDir: {}  # This will create a temporary volume for static content
