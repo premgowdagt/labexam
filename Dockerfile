@@ -1,13 +1,8 @@
-# Dockerfile for static website
+# Use the official Apache HTTP server image from Docker Hub
+FROM httpd:alpine
 
-# Use an official Nginx image from the Docker Hub
-FROM nginx:alpine
+# Copy your website files into Apache's default directory
+COPY ./ /usr/local/apache2/htdocs/
 
-# Copy the static website content into the Nginx container
-COPY ./ /usr/share/nginx/html
-
-# Expose port 86 (or 87)
-EXPOSE 86
-
-# Set the default command to run Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port 80 so the website can be accessed
+EXPOSE 80
