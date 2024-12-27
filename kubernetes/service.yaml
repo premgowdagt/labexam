@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: static-website-service
+  name: apache-static-website-service
 spec:
   selector:
-    app: static-website
+    app: apache-static-website  # This selector should match the label in the deployment
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: NodePort
+      port: 80           # Port that the service will expose within the cluster
+      targetPort: 80      # Port where Apache will be running inside the container
+      nodePort: 30080     # External port that can be accessed on each node in the cluster (this can be any port in the 30000-32767 range)
+  type: NodePort  # Exposes the service via a NodePort
