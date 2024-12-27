@@ -1,3 +1,4 @@
+  GNU nano 6.2                      deployment.yaml                                
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
       - name: apache
-        image: your-dockerhub-username/static-website-apache:latest  # Replace with your image
+        image: premgowda07/static-website-apache:v1  # Replace with your image
         ports:
         - containerPort: 80  # Apache will serve the website on port 80
         volumeMounts:
@@ -25,3 +26,7 @@ spec:
       volumes:
       - name: static-content
         emptyDir: {}  # This will create a temporary volume for static content
+
+
+
+
