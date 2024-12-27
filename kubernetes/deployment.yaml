@@ -1,1 +1,21 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-website-deployment
+  labels:
+    app: static-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static-website
+  template:
+    metadata:
+      labels:
+        app: static-website
+    spec:
+      containers:
+      - name: static-website
+        image: premgowda07/static-website:v1  # Make sure the image is updated and pushed correctly
+        ports:
+        - containerPort: 80
